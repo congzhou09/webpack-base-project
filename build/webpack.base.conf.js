@@ -22,7 +22,7 @@ module.exports = {
         splitChunks:{
             cacheGroups: {
                 vendor: { //单独提取到vendor中的库
-                    test: /[\\/]node_modules[\\/](jquery)[\\/]/,
+                    test: /[\\/]node_modules[\\/](vue|vue-router)[\\/]/,
                     name: 'vendor',
                     chunks: 'all',
                     priority: 2 //某个module同时符合多个Group的条件的时候移入priority值更大的chunk中
@@ -55,7 +55,14 @@ module.exports = {
             {
                 test: /\.js$/,
                 include: [resolve('src')],
-                use: 'babel-loader'
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        "plugins": [
+                            "dynamic-import-webpack"
+                        ]
+                    }
+                }]
             },
             {
                 test: /\.css$/,

@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const analysisBundle = true;
 
 const webpackConfig = merge(baseWebpackConfig, {
     mode: 'production',
@@ -25,5 +26,13 @@ const webpackConfig = merge(baseWebpackConfig, {
         })
     ]
 });
+
+//是否进行chunk分析
+if(analysisBundle)
+{
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+    webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+}
+
 
 module.exports = webpackConfig;

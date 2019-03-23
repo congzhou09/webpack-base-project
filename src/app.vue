@@ -9,5 +9,7 @@
 </script>
 
 <style scoped>
-
+.app{
+    color: red;
+}
 </style>
