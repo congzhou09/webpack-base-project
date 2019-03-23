@@ -12,8 +12,26 @@ module.exports = {
         app: './src/main.js'
     },
     output: {
-        path: resolve("dist/js"),
-        filename: "[name]-[hash].js"
+        path: resolve("dist"),
+        filename: "js/[name]-[hash].js"
+    },
+    optimization:{
+        runtimeChunk: "single", //将webpack的runtime单独提取到一个chunk，且被多个入口共用
+        splitChunks:{
+            cacheGroups: {
+                vendor: { //单独提取到vendor中的库
+                    test: /[\\/]node_modules[\\/](jquery)[\\/]/,
+                    name: 'vendor',
+                    chunks: 'all',
+                    priority: 2 //某个module同时符合多个Group的条件的时候移入priority值更大的chunk中
+                },
+                common: {  //其他node_modules文件夹里的库提取到common中
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'common',
+                    chunks: 'all'
+                }
+            }
+        }
     },
     module: {
         rules: [
