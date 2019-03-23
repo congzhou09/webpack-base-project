@@ -3,6 +3,6 @@ English:
 Base configs and files for webpack project, the master branch has no framework support, branches named by "vue" and "react" support Vue and React separately;
 
 
-ç®€ä½“ä¸­æ–‡ï¼š
+¼òÌåÖĞÎÄ£º
 
-åŒ…å«åŸºç¡€é…ç½®ä¸åŸºç¡€æ–‡ä»¶çš„webpackå·¥ç¨‹ï¼Œmasteråˆ†æ”¯æœªæ·»åŠ æ¡†æ¶ï¼Œvueå’Œreactåˆ†æ”¯åˆ†åˆ«å¢åŠ Vueã€Reactæ¡†æ¶æ”¯æŒã€‚
+°üº¬»ù´¡ÅäÖÃÓë»ù´¡ÎÄ¼şµÄwebpack¹¤³Ì£¬master·ÖÖ§Î´Ìí¼Ó¿ò¼Ü£¬vueºÍreact·ÖÖ§·Ö±ğÔö¼ÓVue¡¢React¿ò¼ÜÖ§³Ö¡£
