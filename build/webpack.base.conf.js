@@ -12,7 +12,7 @@ module.exports = {
         app: './src/main.js'
     },
     output: {
-        path: resolve("dist"),
+        path: resolve("dist/js"),
         filename: "[name]-[hash].js"
     },
     module: {
