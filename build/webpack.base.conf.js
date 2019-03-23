@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
 function resolve(dir) {
     return path.join(__dirname, '..', dir);//__dirname是当前文件所在目录
 }
@@ -18,6 +20,19 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+                options: {
+                    loaders: {
+                        scss:[
+                            'vue-style-loader',
+                            'css-loader',
+                            'sass-loader'
+                        ]
+                    }
+                }
+            },
+            {
                 test: /\.js$/,
                 include: [resolve('src')],
                 use: 'babel-loader'
@@ -28,7 +43,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                use: 'url-loader',
+                loader: 'url-loader',
                 options: {
                     limit: 10000,
                     name: 'static/img/[name].[hash:7].[ext]'
@@ -36,7 +51,7 @@ module.exports = {
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                use: 'url-loader',
+                loader: 'url-loader',
                 options: {
                     limit: 10000,
                     name: 'static/fonts/[name].[hash:7].[ext]'
@@ -45,6 +60,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html',
