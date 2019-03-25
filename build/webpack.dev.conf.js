@@ -6,7 +6,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     devtool: "eval-source-map",
     devServer: {
         port: 2018,
-        index: 'index.html'
+        index: 'index.html',
+        historyApiFallback: true//router的history模式时使用
     }
 });
 

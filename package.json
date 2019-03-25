@@ -36,6 +36,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
+    "webpack-bundle-analyzer": "^3.1.0",
     "webpack-dev-server": "^3.2.1"
   }
 }

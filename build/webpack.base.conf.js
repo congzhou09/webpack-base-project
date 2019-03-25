@@ -17,6 +17,13 @@ module.exports = {
         path: resolve("dist"),
         filename: "js/[name]-[hash].js"
     },
+    resolve: {
+        extensions: ['.js', '.json', '.vue', '.css'],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+            '@': resolve('src')
+        }
+    },
     optimization:{
         runtimeChunk: "single", //将webpack的runtime单独提取到一个chunk，且被多个入口共用
         splitChunks:{
