@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const baseConfig = require('./config');
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir);//__dirname是当前文件所在目录
@@ -13,6 +14,7 @@ module.exports = {
         app: './src/main.js'
     },
     output: {
+        publicPath: baseConfig.urlPrefix,
         path: resolve("dist"),
         filename: "js/[name]-[hash].js"
     },
