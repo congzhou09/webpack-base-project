@@ -1,5 +1,6 @@
 const baseWebpackConfig = require('./webpack.base.conf');
 const merge = require('webpack-merge');
+const baseConfig = require('./config');
 
 const webpackConfig = merge(baseWebpackConfig, {
     mode: 'development',
@@ -7,7 +8,17 @@ const webpackConfig = merge(baseWebpackConfig, {
     devServer: {
         port: 2018,
         index: 'index.html',
-        historyApiFallback: true//router的history模式时使用
+        //router的history模式时使用
+        // historyApiFallback: {
+        //     index: baseConfig.urlPrefix
+        // },
+        publicPath: baseConfig.urlPrefix,
+        // proxy: {
+        //     '/onepath/*': {
+        //         target: 'http://0.0.0.0:2018/',
+        //         pathRewrite: {'^/onepath': ''},
+        //     }
+        // }
     }
 });
 

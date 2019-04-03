@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const baseConfig = require('./config');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -15,6 +16,7 @@ module.exports = {
         app: './src/main.js'
     },
     output: {
+        publicPath: baseConfig.urlPrefix,
         path: resolve("dist"),
         filename: "js/[name]-[hash].js"
     },
