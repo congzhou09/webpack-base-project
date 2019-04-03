@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir);//__dirname是当前文件所在目录
@@ -71,6 +72,14 @@ module.exports = {
             filename: 'index.html',
             template: 'index.html',
             inject: 'body'
-        })
+        }),
+        //webpack-dev-server在内存中虚拟一套目录，也需要用到CopyWebpackPlugin，否则当publicPath非默认值时会导致某些static下的资源在dev模式下访问不到
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, '../static'),
+                to: path.resolve(__dirname, '../dist/static'),
+                ignore: ['.*']
+            }
+        ])
     ]
 };
