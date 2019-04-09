@@ -1,5 +1,7 @@
+const path = require('path');
 const baseWebpackConfig = require('./webpack.base.conf');
 const merge = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./config');
 
 const webpackConfig = merge(baseWebpackConfig, {
@@ -19,7 +21,13 @@ const webpackConfig = merge(baseWebpackConfig, {
         //         pathRewrite: {'^/onepath': ''},
         //     }
         // }
-    }
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            path: path.join(__dirname, "../dist"),
+            filename: 'static/css/[name]-[hash].css'
+        })
+    ]
 });
 
 module.exports = webpackConfig;

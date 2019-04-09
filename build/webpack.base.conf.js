@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./config');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -18,7 +19,7 @@ module.exports = {
     output: {
         publicPath: baseConfig.urlPrefix,
         path: resolve("dist"),
-        filename: "js/[name]-[hash].js"
+        filename: "static/js/[name]-[hash].js"
     },
     resolve: {
         extensions: ['.js', '.json', '.vue', '.css'],
@@ -66,7 +67,7 @@ module.exports = {
                 test: /\.js$/,
                 include: [resolve('src')],
                 use: [{
-                    loader: 'babel-loader',
+                    loader: 'babel-loader?cacheDirectory=true',
                     options: {
                         "plugins": [
                             "dynamic-import-webpack"
@@ -76,7 +77,9 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader','css-loader']
+                use: ['style-loader',
+                    MiniCssExtractPlugin.loader,
+                    'css-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
