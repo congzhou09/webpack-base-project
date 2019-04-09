@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = require('./config');
 
 function resolve(dir) {
@@ -16,7 +17,7 @@ module.exports = {
     output: {
         publicPath: baseConfig.urlPrefix,
         path: resolve("dist"),
-        filename: "js/[name]-[hash].js"
+        filename: "static/js/[name]-[hash].js"
     },
     optimization:{
         runtimeChunk: "single", //将webpack的runtime单独提取到一个chunk，且被多个入口共用
@@ -41,11 +42,13 @@ module.exports = {
             {
                 test: /\.js$/,
                 include: [resolve('src')],
-                use: 'babel-loader'
+                use: 'babel-loader?cacheDirectory=true'
             },
             {
                 test: /\.css$/,
-                use: ['style-loader','css-loader']
+                use: ['style-loader',
+                    MiniCssExtractPlugin.loader,
+                    'css-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
