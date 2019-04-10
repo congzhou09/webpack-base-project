@@ -77,9 +77,27 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader',
+                use: [
+                    'style-loader',
                     MiniCssExtractPlugin.loader,
-                    'css-loader']
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: ()=>[
+                                require('postcss-preset-env')({
+                                    browsers: 'last 2 versions'
+                                }),
+                            ]
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
