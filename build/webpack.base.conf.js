@@ -24,7 +24,7 @@ module.exports = {
         splitChunks:{
             cacheGroups: {
                 vendor: { //单独提取到vendor中的库
-                    test: /[\\/]node_modules[\\/](jquery)[\\/]/,
+                    test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
                     name: 'vendor',
                     chunks: 'all',
                     priority: 2 //某个module同时符合多个Group的条件的时候移入priority值更大的chunk中
@@ -40,7 +40,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 include: [resolve('src')],
                 use: 'babel-loader?cacheDirectory=true'
             },

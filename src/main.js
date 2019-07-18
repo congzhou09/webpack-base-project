@@ -1,5 +1,9 @@
 import './style/all.css';
+import React,{Component} from 'react';
+import ReactDom from 'react-dom';
 
-(()=>{
-    console.log('hello world');
-})();
+ReactDom.render((
+    <div>
+        <p>Hello World!</p>
+    </div>
+), document.querySelector('#app'));
