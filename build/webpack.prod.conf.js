@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const analysisBundle = false;
 
 const webpackConfig = merge(baseWebpackConfig, {
@@ -19,7 +20,12 @@ const webpackConfig = merge(baseWebpackConfig, {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: false // set to true if you want JS source maps
+                sourceMap: false, // set to true if you want JS source maps
+                uglifyOptions: {
+                    compress: {
+                        inline: false
+                    }
+                }// for uglifyjs-webpack-plugin inline parameter reuses bug
             }),
             new OptimizeCSSAssetsPlugin({})
         ]
@@ -36,6 +42,13 @@ const webpackConfig = merge(baseWebpackConfig, {
             path: path.join(__dirname, "../dist"),
             filename: 'static/css/[name]-[contenthash].css'
         }),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, '../static'),
+                to: path.resolve(__dirname, '../dist/static'),
+                ignore: ['.*']
+            }
+        ])
     ]
 });
 
