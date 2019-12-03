@@ -1,15 +1,15 @@
 <template>
-    <h1>Hello</h1>
+  <h1>Hello</h1>
 </template>
 
 <script>
-    export default {
-        name: "app"
-    }
+export default {
+  name: 'app'
+};
 </script>
 
 <style scoped>
-.app{
-    color: red;
+.app {
+  color: red;
 }
 </style>
