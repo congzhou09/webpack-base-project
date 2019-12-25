@@ -10,10 +10,10 @@ const webpackConfig = merge(baseWebpackConfig, {
   devServer: {
     port: 2018,
     index: 'index.html',
-    // router��historyģʽʱʹ��
-    // historyApiFallback: {
-    //     index: baseConfig.urlPrefix
-    // },
+    // router的history模式时使用
+    historyApiFallback: {
+      index: baseConfig.urlPrefix
+    },
     publicPath: baseConfig.urlPrefix
     // proxy: {
     //     '/onepath/*': {
