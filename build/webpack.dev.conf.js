@@ -18,6 +18,11 @@ const webpackConfig = merge(baseWebpackConfig, {
     //     '/onepath/*': {
     //         target: 'http://0.0.0.0:2018/',
     //         pathRewrite: {'^/onepath': ''},
+    //     },
+    //     '/pathtwo/*': {
+    //         target: 'http://0.0.0.0:2018/',
+    //         changeOrigin: true,
+    //         secure: false
     //     }
     // }
   },
