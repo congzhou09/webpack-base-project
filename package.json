@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "set ENV=development && webpack-dev-server --hot --progress --host 0.0.0.0 --config build/webpack.dev.conf.js",
     "sit": "webpack --config build/webpack.sit.conf.js",
@@ -15,11 +16,6 @@
   },
   "author": "yuancongzhou",
   "license": "ISC",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run codecheck"
-    }
-  },
   "dependencies": {
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^4.0.0",
