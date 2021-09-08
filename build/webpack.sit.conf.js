@@ -1,11 +1,9 @@
-const path = require('path');
 const baseWebpackConfig = require('./webpack.base.conf');
-const merge = require('webpack-merge');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { merge } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
@@ -31,16 +29,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      path: path.join(__dirname, '../dist'),
       filename: 'static/css/[name]-[contenthash].css'
-    }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: path.resolve(__dirname, '../dist/static'),
-        ignore: ['.*']
-      }
-    ])
+    })
   ]
 });
 
