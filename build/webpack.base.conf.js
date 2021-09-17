@@ -47,6 +47,10 @@ module.exports = {
         use: 'babel-loader?cacheDirectory=true'
       },
       {
+        test: /\.(ts|tsx)?$/,
+        use: 'ts-loader'
+      },
+      {
         test: /\.css$/,
         use: [
           process.env.ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -70,6 +74,77 @@ module.exports = {
                 ]
               }
             }
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          process.env.ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      browsers: 'last 2 versions'
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+                modifyVars: {
+                  'primary-color': '#1DA57A',
+                  'link-color': '#1DA57A',
+                  'border-radius-base': '2px'
+                },
+                javascriptEnabled: true
+              }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          process.env.ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      browsers: 'last 2 versions'
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
           }
         ]
       },
