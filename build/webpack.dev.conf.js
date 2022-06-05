@@ -12,8 +12,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     //     index: baseConfig.urlPrefix
     // },
     static: {
-      publicPath: baseConfig.urlPrefix
-    }
+      publicPath: baseConfig.urlPrefix,
+    },
     // proxy: {
     //     '/onepath/*': {
     //         target: 'http://0.0.0.0:2018/',
@@ -28,9 +28,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name]-[hash].css'
-    })
-  ]
+      filename: 'static/css/[name]-[hash].css',
+    }),
+  ],
 });
 
 module.exports = webpackConfig;
