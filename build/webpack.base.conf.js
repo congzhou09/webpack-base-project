@@ -12,12 +12,12 @@ function resolve(dir) {
 module.exports = {
   context: resolve('.'),
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
   },
   output: {
     publicPath: baseConfig.urlPrefix,
     path: resolve('dist'),
-    filename: 'static/js/[name]-[hash].js'
+    filename: 'static/js/[name]-[hash].js',
   },
   optimization: {
     runtimeChunk: 'single', // 将webpack的runtime单独提取到一个chunk，且被多个入口共用
@@ -28,27 +28,30 @@ module.exports = {
           test: /[\\/]node_modules[\\/](jquery)[\\/]/,
           name: 'vendor',
           chunks: 'all',
-          priority: 2 // 某个module同时符合多个Group的条件的时候移入priority值更大的chunk中
+          priority: 2, // 某个module同时符合多个Group的条件的时候移入priority值更大的chunk中
         },
         common: {
           // 其他node_modules文件夹里的库提取到common中
           test: /[\\/]node_modules[\\/]/,
           name: 'common',
-          chunks: 'all'
-        }
-      }
-    }
+          chunks: 'all',
+        },
+      },
+    },
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.css', '.ts', '.tsx'],
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         include: [resolve('src')],
-        use: 'babel-loader?cacheDirectory=true'
+        use: 'babel-loader?cacheDirectory=true',
       },
       {
         test: /\.(ts|tsx)?$/,
-        use: 'ts-loader'
+        use: 'ts-loader',
       },
       {
         test: /\.css$/,
@@ -57,8 +60,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'postcss-loader',
@@ -68,14 +71,14 @@ module.exports = {
                   [
                     'postcss-preset-env',
                     {
-                      browsers: 'last 2 versions'
-                    }
-                  ]
-                ]
-              }
-            }
-          }
-        ]
+                      browsers: 'last 2 versions',
+                    },
+                  ],
+                ],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.less$/,
@@ -84,8 +87,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'postcss-loader',
@@ -95,12 +98,12 @@ module.exports = {
                   [
                     'postcss-preset-env',
                     {
-                      browsers: 'last 2 versions'
-                    }
-                  ]
-                ]
-              }
-            }
+                      browsers: 'last 2 versions',
+                    },
+                  ],
+                ],
+              },
+            },
           },
           {
             loader: 'less-loader',
@@ -110,13 +113,13 @@ module.exports = {
                 modifyVars: {
                   'primary-color': '#1DA57A',
                   'link-color': '#1DA57A',
-                  'border-radius-base': '2px'
+                  'border-radius-base': '2px',
                 },
-                javascriptEnabled: true
-              }
-            }
-          }
-        ]
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
@@ -125,8 +128,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'postcss-loader',
@@ -136,17 +139,17 @@ module.exports = {
                   [
                     'postcss-preset-env',
                     {
-                      browsers: 'last 2 versions'
-                    }
-                  ]
-                ]
-              }
-            }
+                      browsers: 'last 2 versions',
+                    },
+                  ],
+                ],
+              },
+            },
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -155,10 +158,10 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'static/img/[name].[hash:7].[ext]'
-            }
-          }
-        ]
+              name: 'static/img/[name].[hash:7].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -167,27 +170,27 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'static/fonts/[name].[hash:7].[ext]'
-            }
-          }
-        ]
-      }
-    ]
+              name: 'static/fonts/[name].[hash:7].[ext]',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: 'body'
+      inject: 'body',
     }),
     // webpack-dev-server在内存中虚拟一套目录，也需要用到CopyWebpackPlugin，否则当publicPath非默认值时会导致某些static下的资源在dev模式下访问不到
     new CopyWebpackPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, '../static'),
-          to: path.resolve(__dirname, '../dist/static')
-        }
-      ]
-    })
-  ]
+          to: path.resolve(__dirname, '../dist/static'),
+        },
+      ],
+    }),
+  ],
 };
