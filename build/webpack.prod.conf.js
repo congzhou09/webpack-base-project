@@ -11,7 +11,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   devtool: false,
   output: {
-    filename: 'static/js/[name]-[contenthash].js'
+    filename: 'static/js/[name]-[contenthash].js',
   },
   optimization: {
     minimizer: [
@@ -21,25 +21,25 @@ const webpackConfig = merge(baseWebpackConfig, {
         sourceMap: false, // set to true if you want JS source maps
         uglifyOptions: {
           compress: {
-            inline: false
-          }
-        } // for uglifyjs-webpack-plugin inline parameter reuses bug
+            inline: false,
+          },
+        }, // for uglifyjs-webpack-plugin inline parameter reuses bug
       }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
+      new OptimizeCSSAssetsPlugin({}),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new CompressionWebpackPlugin({
-      filename: '[path].gz[query]',
+      filename: '[path][base].gz',
       algorithm: 'gzip',
       test: new RegExp('\\.(js|css)$'),
-      minRatio: 0.8
+      minRatio: 0.8,
     }),
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name]-[contenthash].css'
-    })
-  ]
+      filename: 'static/css/[name]-[contenthash].css',
+    }),
+  ],
 });
 
 // 是否进行chunk分析
