@@ -5,13 +5,13 @@ export default defineConfig((command, mode, ssrBuild) => {
     // root: 'vite',
     build: {
       rollupOptions: {
-        input: {
-          app: '/vite.html',
-        },
+        // input: {
+        //   app: '/index.html',
+        // },
       },
     },
     server: {
-      open: '/vite.html',
+      // open: '/index.html',
       port: 2018,
     },
   };
