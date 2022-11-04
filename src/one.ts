@@ -9,3 +9,5 @@ const oneFish: FishType = {
     console.log('I swim');
   },
 };
+
+oneFish.swim();
