@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig((command, mode, ssrBuild) => {
   return {
@@ -14,5 +15,6 @@ export default defineConfig((command, mode, ssrBuild) => {
       // open: '/index.html',
       port: 2018,
     },
+    plugins: [react()],
   };
 });

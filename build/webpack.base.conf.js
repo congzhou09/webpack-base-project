@@ -12,7 +12,7 @@ function resolve(dir) {
 module.exports = {
   context: resolve('.'),
   entry: {
-    app: './src/main.js',
+    app: './src/main.jsx',
   },
   output: {
     publicPath: baseConfig.urlPrefix,
@@ -45,7 +45,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         include: [resolve('src')],
         use: 'babel-loader?cacheDirectory=true',
       },
