@@ -41,6 +41,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.ts', '.tsx'],
+    alias: {
+      '@utils': resolve('src/utils'),
+    },
   },
   module: {
     rules: [
