@@ -1,5 +1,5 @@
 import './style/all.css';
-import './one';
+import '@utils/one';
 
 (() => {
   console.log('hello world');
