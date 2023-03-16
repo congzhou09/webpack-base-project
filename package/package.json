@@ -1,7 +1,8 @@
 {
-  "name": "webpack_project",
+  "name": "@brick-cli/base",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +12,12 @@
     "build": "webpack --config build/webpack.prod.conf.js",
     "codecheck": "eslint --ext .jsx,.js,.vue,.ts,.tsx --fix src && prettier --write src/**/*.{css,scss,less} --loglevel warn"
   },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
   "author": "yuancongzhou",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "bin": {
+    "brick": "cli.js"
+  },
+  "dependencies": {
     "@babel/core": "^7.7.2",
     "@babel/eslint-parser": "^7.18.2",
     "@babel/preset-env": "^7.7.1",
@@ -55,6 +54,9 @@
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.1.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "bash-color": "^0.0.4",
+    "detect-port": "^1.5.1",
+    "yargs": "^17.7.1"
   }
 }
