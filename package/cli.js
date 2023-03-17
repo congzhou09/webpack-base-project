@@ -111,9 +111,13 @@ const commands = [
           accessSync(destDirectory, constants.R_OK);
           console.warn(color.yellow(`${one} has existed, ignore creation.`));
         } catch (checkErr) {
-          cpPromise(sourceDirectory, destDirectory, { recursive: true }).catch((err) => {
-            console.error(`error occurs when creating file ${one}.`, err);
-          });
+          cpPromise(sourceDirectory, destDirectory, { recursive: true })
+            .then(() => {
+              console.log(color.cyan(`file or directory named "${one}" created.`));
+            })
+            .catch((err) => {
+              console.error(`error occurs when creating file ${one}.`, err);
+            });
         }
       });
     },
