@@ -1,9 +1,62 @@
-English:
+## webpack-base-project
 
-● Webpack project built from zero, containing base configs and files, supporting the usage of vite as the devServer. the master branch has no framework support, branches named by "vue" and "react" support Vue and React separately.
+● Web-front base project containing whole dependencies and configs for environments of dev, site and prod.
+● Features supported is listed in the table below. <b>Feel free to access "/build" directory and relating config files for more detail.</b>
 
----
+<table>
+<tr>
+<th>Feature</th>
+<th>ps</th>
+</tr>
+<tr>
+<td> webpack-dev-server </td>
+<td> ◇configurations are in "/build"  </td>
+</tr>
+<tr>
+<td> vite devServer </td>
+<td> ◇using "/index.html" as the entry  </td>
+</tr>
+<tr>
+<td> compile using webpack  </td>
+<td>
+◇compiling outcomes are in "/dist"<br>
+◇webpack configs: splitChunks, runtimeChunk  <br>
+</td>
+</tr>
+<tr>
+<td> webpack compiling tools</td>
+<td>
+◇Babel <br>
+◇TypeScript <br>
+◇Less<br>
+◇Sass<br>
+◇PostCSS<br>
+</td>
+</tr>
+<tr>
+<td> code quality and style tools </td>
+<td> 
+◇ESLint<br>
+◇EditorConfig<br>
+◇Prettier<br>
+</td>
+</tr>
+<tr>
+<td> general </td>
+<td>
+◇gzip copy<br>
+◇static resource files in "/static" folder
+◇css extracted to files
+◇minimized textual files
+◇.gitignore
+</td>
+</tr>
+</table>
 
-简体中文：
+● Each git branch maintains the project with corresponding framework.
 
-● 从零开始搭建的 webpack 工程，包含基础配置与基础文件，支持使用 vite 作为 devServer。其中 master 分支未添加框架，vue 分支和 react 分支分别增加 Vue 和 React 框架支持。
+| branch |  framework   |
+| :----: | :----------: |
+| master | no framework |
+|  vue   |     vue2     |
+| react  |    react     |

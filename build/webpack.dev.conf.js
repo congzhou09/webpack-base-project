@@ -9,9 +9,13 @@ const webpackConfig = merge(baseWebpackConfig, {
   devServer: {
     host: '0.0.0.0',
     port: 2018,
-    // historyApiFallback: {
-    //     index: baseConfig.urlPrefix
-    // },
+    hot: true,
+    client: {
+      progress: true,
+    },
+    historyApiFallback: {
+      rewrites: [{ from: /^\/$/, to: baseConfig.urlPrefix + '/index.html' }],
+    },
     static: {
       publicPath: baseConfig.urlPrefix,
     },
