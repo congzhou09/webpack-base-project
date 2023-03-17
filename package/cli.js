@@ -1,0 +1,202 @@
+#!/usr/bin/env node
+
+const fs = require('node:fs');
+const fsPromise = require('node:fs/promises');
+const path = require('path');
+const color = require('bash-color');
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const WebpackDevServer = require('webpack-dev-server');
+const devConfig = require('./build/webpack.dev.conf');
+const sitConfig = require('./build/webpack.sit.conf');
+const prodConfig = require('./build/webpack.prod.conf');
+
+const { accessSync, constants } = fs;
+const { cp: cpPromise } = fsPromise;
+
+const workDirectory = process.cwd();
+const CUSTOM_FILENAME = 'brick.config.js';
+
+const configFinal = {
+  dev: getFinalConfig(devConfig),
+  sit: getFinalConfig(sitConfig),
+  prod: getFinalConfig(prodConfig),
+};
+
+function getViteConfigPath() {
+  let configDefault = path.join(__dirname, './vite.config.js');
+  try {
+    const customDirectory = path.join(workDirectory, './vite.config.js');
+    accessSync(customDirectory, constants.R_OK);
+    configDefault = customDirectory;
+  } catch (err) {}
+
+  return configDefault;
+}
+
+// generate final webpack config using custom brick config in workDirectory
+function getFinalConfig(oneConfig) {
+  let finalConfig = oneConfig;
+  try {
+    const customDirectory = path.join(workDirectory, CUSTOM_FILENAME);
+    accessSync(customDirectory, constants.R_OK);
+    const theCustom = require(customDirectory);
+    if (typeof theCustom === 'function') {
+      finalConfig = theCustom.call(null, oneConfig);
+    } else {
+      finalConfig = merge(oneConfig, theCustom);
+    }
+  } catch (err) {}
+
+  return finalConfig;
+}
+
+// eject webpack config to console or file
+function ejectConfig(filename, theConfig) {
+  if (filename.length > 0) {
+    fs.writeFileSync(filename, JSON.stringify(theConfig, null, 2));
+  } else {
+    console.log(JSON.stringify(theConfig, null, 2));
+  }
+}
+
+function whetherEject(ejectValue, env) {
+  if (ejectValue) {
+    ejectConfig(ejectValue, configFinal[env]);
+    return true;
+  }
+  return false;
+}
+
+function runBuild(env) {
+  const theConfig = configFinal[env];
+  const compiler = webpack(theConfig);
+
+  compiler.run((err, stats) => {
+    if (err) {
+      console.error(err.stack || err);
+      if (err.details) {
+        console.error(err.details);
+      }
+      return;
+    }
+    const info = stats.toJson();
+    if (stats.hasErrors()) {
+      console.error(info.errors);
+    }
+    if (stats.hasWarnings()) {
+      console.warn(info.warnings);
+    }
+
+    compiler.close((closeErr) => {
+      console.error(`error occurs when closing webpack compiler:`, closeErr);
+    });
+  });
+}
+
+// yargs's commands info
+const commands = [
+  {
+    cmd: 'init',
+    desc: 'create necessary files for devServer and build',
+    builder: {},
+    handler: () => {
+      const filesToCopy = require('./files-to-copy');
+      filesToCopy.forEach((one) => {
+        const sourceDirectory = path.join(__dirname, `./${one}`);
+        const destDirectory = path.join(workDirectory, `./${one}`);
+        try {
+          accessSync(destDirectory, constants.R_OK);
+          console.warn(color.yellow(`${one} has existed, ignore creation.`));
+        } catch (checkErr) {
+          cpPromise(sourceDirectory, destDirectory, { recursive: true })
+            .then(() => {
+              console.log(color.cyan(`file or directory named "${one}" created.`));
+            })
+            .catch((err) => {
+              console.error(`error occurs when creating file ${one}.`, err);
+            });
+        }
+      });
+    },
+  },
+  {
+    cmd: 'vite',
+    desc: 'run vite dev server',
+    builder: {},
+    handler: async (argv) => {
+      const configPath = getViteConfigPath();
+      const vite = require('vite');
+      const { createServer } = vite;
+      const server = await createServer({
+        configFile: configPath,
+      });
+      await server.listen();
+
+      server.printUrls();
+    },
+  },
+  {
+    cmd: 'dev',
+    desc: 'run webpack dev server',
+    builder: {},
+    handler: (argv) => {
+      if (!whetherEject(argv.eject, 'dev')) {
+        const theConfig = configFinal['dev'];
+        const compiler = webpack(theConfig);
+
+        const detect = require('detect-port');
+        const port = theConfig.devServer.port;
+        detect(port)
+          .then((_port) => {
+            if (port !== _port) {
+              console.log(color.yellow(`port: ${port} was occupied, try port: ${_port}`));
+            }
+            theConfig.devServer.port = _port;
+            const server = new WebpackDevServer(theConfig.devServer, compiler);
+            server.startCallback(() => {
+              console.log(color.cyan(`server start successfully at port:${_port}`));
+            });
+          })
+          .catch((err) => {
+            console.error(color.red(`server fails in starting. ${err}`));
+          });
+      }
+    },
+  },
+  {
+    cmd: 'sit',
+    desc: 'build for sit',
+    builder: {},
+    handler: (argv) => {
+      if (!whetherEject(argv.eject, 'sit')) {
+        runBuild('sit');
+      }
+    },
+  },
+  {
+    cmd: 'prod',
+    desc: 'build for prod',
+    builder: {},
+    handler: (argv) => {
+      if (!whetherEject(argv.eject, 'prod')) {
+        runBuild('prod');
+      }
+    },
+  },
+];
+
+// generate yargs's commands
+const yargsObj = yargs(hideBin(process.argv));
+commands.forEach((one) => {
+  const { cmd, desc, builder, handler } = one;
+  yargsObj.command(cmd, desc, builder, handler);
+});
+yargsObj.option({
+  eject: {
+    describe: 'eject the config to console <or filename>',
+  },
+});
+yargsObj.parse();

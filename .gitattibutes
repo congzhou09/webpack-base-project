@@ -1,1 +1,3 @@
 yarn.lock merge=ours
+package/* merge=ours
+package-test/* merge=ours
