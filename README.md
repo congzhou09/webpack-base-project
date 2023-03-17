@@ -1,6 +1,7 @@
 ## webpack-base-project
 
 ● Web-front base project containing whole dependencies and configs for environments of dev, site and prod.
+
 ● Features supported is listed in the table below. <b>Feel free to access "/build" directory and relating config files for more detail.</b>
 
 <table>
@@ -60,3 +61,5 @@
 | master | no framework |
 |  vue   |     vue2     |
 | react  |    react     |
+
+● There is a serie of [packages](https://github.com/congzhou09/webpack-base-project/blob/master/package/README.md) used to organize web-front projects using templates here.
