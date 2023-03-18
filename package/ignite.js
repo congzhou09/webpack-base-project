@@ -16,7 +16,7 @@ function resolvePath(...args) {
 const pathToCopy = [
   { from: resolvePath('../build/'), to: resolvePath('./build/') },
   ...filesToCopy.map((one) => {
-    return { from: resolvePath(`../${one}`), to: resolvePath(`./${one}`) };
+    return { from: resolvePath(`../${one}`), to: resolvePath(`./essentials/${one}`) };
   }),
 ];
 
