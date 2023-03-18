@@ -13,7 +13,7 @@ function resolve(dir) {
 module.exports = {
   context: resolve('.'),
   entry: {
-    app: resolve('./src/main.js'),
+    app: resolve('./src/index.js'),
   },
   output: {
     publicPath: baseConfig.urlPrefix,

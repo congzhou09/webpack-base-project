@@ -1,6 +1,7 @@
 // construct necessary package content from the outer project
 
 const fs = require('fs');
+const path = require('path');
 const fsPromise = require('node:fs/promises');
 const outerPackage = require('../package.json');
 const innerPackage = require('./package.json');
@@ -8,10 +9,14 @@ const filesToCopy = require('./files-to-copy');
 
 const { cp: cpPromise } = fsPromise;
 
+function resolvePath(...args) {
+  return path.join(__dirname, ...args);
+}
+
 const pathToCopy = [
-  { from: '../build/', to: './build/' },
+  { from: resolvePath('../build/'), to: resolvePath('./build/') },
   ...filesToCopy.map((one) => {
-    return { from: `../${one}`, to: `./${one}` };
+    return { from: resolvePath(`../${one}`), to: resolvePath(`./${one}`) };
   }),
 ];
 
@@ -32,4 +37,4 @@ const innateDependencies = {
 innerPackage.dependencies = Object.assign(outerPackage.dependencies, outerPackage.devDependencies, innateDependencies);
 innerPackage.scripts = Object.assign(outerPackage.scripts);
 
-fs.writeFileSync('./package.json', JSON.stringify(innerPackage, null, 2));
+fs.writeFileSync(resolvePath('./package.json'), JSON.stringify(innerPackage, null, 2));
