@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
-  extends: ['google', 'plugin:prettier/recommended'],
+  extends: ['google', 'plugin:react/recommended', 'plugin:prettier/recommended'],
+  plugins: ['react-hooks'],
   env: {
     browser: true,
     commonjs: true,
@@ -14,6 +15,8 @@ module.exports = {
   rules: {
     'require-jsdoc': 'off',
     'comma-dangle': 0,
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
   },
   overrides: [
     {
@@ -27,4 +30,9 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };
