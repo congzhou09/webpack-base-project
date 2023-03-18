@@ -1,3 +1,4 @@
 yarn.lock merge=ours
-package/* merge=ours
+package/**/* merge=ours
+package/package.json merge=ours
 package-test/* merge=ours
