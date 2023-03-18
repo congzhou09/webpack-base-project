@@ -105,7 +105,7 @@ const commands = [
     handler: () => {
       const filesToCopy = require('./files-to-copy');
       filesToCopy.forEach((one) => {
-        const sourceDirectory = path.join(__dirname, `./${one}`);
+        const sourceDirectory = path.join(__dirname, `./essentials/${one}`);
         const destDirectory = path.join(workDirectory, `./${one}`);
         try {
           accessSync(destDirectory, constants.R_OK);
