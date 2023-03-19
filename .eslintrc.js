@@ -13,7 +13,7 @@ module.exports = {
   },
   rules: {
     'require-jsdoc': 'off',
-    'comma-dangle': 0,
+    'comma-dangle': 'off',
   },
   overrides: [
     {
