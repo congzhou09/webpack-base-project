@@ -36,4 +36,4 @@ const innateDependencies = {
 
 innerPackage.dependencies = Object.assign(outerPackage.dependencies, outerPackage.devDependencies, innateDependencies);
 
-fs.writeFileSync(resolvePath('./package.json'), JSON.stringify(innerPackage, null, 2));
+fs.writeFileSync(resolvePath('./package.json'), JSON.stringify(innerPackage, null, 2) + '\n');
