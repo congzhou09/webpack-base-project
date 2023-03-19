@@ -1,6 +1,6 @@
-## @brick-cli
+## brick-cli-base
 
-♂ @brick-cli is a serie of packages used to organize web-front projects using templates in [webpack-base-project](https://github.com/congzhou09/webpack-base-project), alonging with cli commands.
+♂ brick-cli-XX is a serie of packages used to organize web-front projects using templates in [webpack-base-project](https://github.com/congzhou09/webpack-base-project), alonging with cli commands.
 
 ♂ purposes
 
@@ -14,12 +14,12 @@
 
 |   package name   |  framework   |
 | :--------------: | :----------: |
-| @brick-cli/base  | no framework |
-| @brick-cli/react |    react     |
+| brick-cli-base  | no framework |
+| brick-cli-react |    react     |
 
 ## usage
 
-♀ Install specific @brick-cli package.
+♀ Install specific brick-cli-XX package.
 
 ♀ Run "brick init" for the first time. This will create config files for tools like ".eslintrc.js", "babel.config.js", ".prettierrc" and so on with default configurations. If one config file has existed, it will not be overwritten, and a message like "xxx has existed, ignore creation." will be displayed in the command window.
 
@@ -55,7 +55,7 @@ module.exports = (curConfigs)=>{
 <tr>
 <td>brick dev</td>
 <td>run webpack dev server</td>
-<td colspan="4">
+<td rowspan="4">
 ◆--eject <br>
 Write final webpack configs to command window(--eject) or to file(--eject=<span style="font-style:italic;">filename</span>)
 </td>

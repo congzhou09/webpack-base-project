@@ -35,6 +35,5 @@ const innateDependencies = {
 };
 
 innerPackage.dependencies = Object.assign(outerPackage.dependencies, outerPackage.devDependencies, innateDependencies);
-innerPackage.scripts = Object.assign(outerPackage.scripts);
 
 fs.writeFileSync(resolvePath('./package.json'), JSON.stringify(innerPackage, null, 2));
