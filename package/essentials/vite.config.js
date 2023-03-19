@@ -1,5 +1,6 @@
 const path = require('path');
 import { defineConfig } from 'vite';
+import checker from 'vite-plugin-checker';
 
 export default defineConfig((command, mode, ssrBuild) => {
   return {
@@ -15,6 +16,11 @@ export default defineConfig((command, mode, ssrBuild) => {
       // open: '/index.html',
       port: 2018,
     },
+    plugins: [
+      checker({
+        typescript: true,
+      }),
+    ],
     resolve: {
       extensions: ['.js', '.jsx', '.json', '.css', '.ts', '.tsx'],
       alias: {
