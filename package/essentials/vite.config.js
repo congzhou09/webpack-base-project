@@ -2,6 +2,7 @@ const path = require('path');
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import babelConfig from './babel.config.js';
+import checker from 'vite-plugin-checker';
 
 export default defineConfig((command, mode, ssrBuild) => {
   return {
@@ -20,6 +21,9 @@ export default defineConfig((command, mode, ssrBuild) => {
     plugins: [
       react({
         babel: { plugins: babelConfig.plugins },
+      }),
+      checker({
+        typescript: true,
       }),
     ],
     // optimizeDeps: {

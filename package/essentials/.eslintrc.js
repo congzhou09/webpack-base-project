@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   extends: ['google', 'plugin:react/recommended', 'plugin:prettier/recommended'],
-  plugins: ['react-hooks'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   env: {
     browser: true,
     commonjs: true,
@@ -14,9 +14,13 @@ module.exports = {
   },
   rules: {
     'require-jsdoc': 'off',
-    'comma-dangle': 0,
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    'react-hooks/exhaustive-deps': 'off',
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
+    'no-unused-vars': 'off',
+    'prefer-destructuring': ['error', { object: true, array: true }],
   },
   overrides: [
     {

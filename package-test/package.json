@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "brick dev",
-    "build": "echo 'wowo' "
+    "build": "brick prod"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@brick-cli/base": "../package"
+    "@brick-cli/react": "../package"
   }
 }
