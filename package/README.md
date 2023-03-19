@@ -4,8 +4,11 @@
 
 ♂ purposes
 
-1. Uniform basic project configs between diffenent projects using the same same framework.
-2. Update project configs more easily. Updating specific package's version will reach the goal.
+1. Organize projects with less config works, which is achieved by encapsulting basic config works into an npm package.
+
+2. Uniform basic project configs between diffenent projects using the same same framework.
+
+3. Update project configs more easily. Updating specific package's version will reach the goal.
 
 ♂ Related framework for each package is as follows.
 

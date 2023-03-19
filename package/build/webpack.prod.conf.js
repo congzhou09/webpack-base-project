@@ -11,7 +11,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   devtool: false,
   output: {
-    filename: 'static/js/[name]-[contenthash].js',
+    filename: 'js/[name]-[contenthash].js',
   },
   optimization: {
     minimizer: [
@@ -30,7 +30,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       minRatio: 0.8,
     }),
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name]-[contenthash].css',
+      filename: 'css/[name]-[contenthash].css',
     }),
   ],
 });

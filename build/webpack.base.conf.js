@@ -1,5 +1,4 @@
 const path = require('path');
-// const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -18,7 +17,7 @@ module.exports = {
   output: {
     publicPath: baseConfig.urlPrefix,
     path: resolve('dist'),
-    filename: 'static/js/[name]-[hash].js',
+    filename: 'js/[name]-[contenthash].js',
   },
   optimization: {
     runtimeChunk: 'single', // 将webpack的runtime单独提取到一个chunk，且被多个入口共用
@@ -161,8 +160,9 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
-              name: 'static/img/[name].[hash:7].[ext]',
+              limit: 8192,
+              outputPath: 'image',
+              name: '[name]-[contenthash].[ext]',
             },
           },
         ],
@@ -173,8 +173,9 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
-              name: 'static/fonts/[name].[hash:7].[ext]',
+              limit: 8192,
+              outputPath: 'font',
+              name: '[name]-[contenthash].[ext]',
             },
           },
         ],
