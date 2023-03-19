@@ -20,8 +20,9 @@
 <tr>
 <td> compile using webpack  </td>
 <td>
-◇compiling outcomes are in "/dist"<br>
-◇webpack configs: splitChunks, runtimeChunk  <br>
+◇"src/index.js" as the default compiling entry<br>
+◇"/dist" as the default compiling outcomes directory<br>
+◇with webpack configs: splitChunks, runtimeChunk  <br>
 </td>
 </tr>
 <tr>
@@ -45,11 +46,12 @@
 <tr>
 <td> general </td>
 <td>
-◇gzip copy<br>
+◇cross-env
+◇.gitignore
+◇gzip copies<br>
 ◇static resource files in "/static" folder
 ◇css extracted to files
 ◇minimized textual files
-◇.gitignore
 </td>
 </tr>
 </table>

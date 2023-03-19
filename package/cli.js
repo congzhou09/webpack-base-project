@@ -91,7 +91,9 @@ function runBuild(env) {
     }
 
     compiler.close((closeErr) => {
-      console.error(`error occurs when closing webpack compiler:`, closeErr);
+      if (closeErr) {
+        console.error(`error occurs when closing webpack compiler:`, closeErr);
+      }
     });
   });
 }
