@@ -1,6 +1,1 @@
-import './style/all.css';
-import '@utils/one';
-
-(() => {
-  console.log('hello world');
-})();
+import './main.jsx';
