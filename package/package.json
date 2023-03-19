@@ -1,22 +1,17 @@
 {
-  "name": "@brick-cli/base",
-  "version": "1.0.0",
+  "name": "brick-cli-base",
+  "version": "1.0.0-alpha",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "prepare": "husky install",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env ENV=development webpack-dev-server --config build/webpack.dev.conf.js",
-    "dev:vite": "vite",
-    "sit": "webpack --config build/webpack.sit.conf.js",
-    "build": "webpack --config build/webpack.prod.conf.js",
-    "codecheck": "eslint --ext .jsx,.js,.vue,.ts,.tsx --fix src && prettier --write src/**/*.{css,scss,less} --loglevel warn"
-  },
   "author": "yuancongzhou",
   "license": "ISC",
   "bin": {
     "brick": "cli.js"
   },
+  "files": [
+    "/*",
+    "!ignite.js"
+  ],
   "dependencies": {
     "@babel/core": "^7.7.2",
     "@babel/eslint-parser": "^7.18.2",
