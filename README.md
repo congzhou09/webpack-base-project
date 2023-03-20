@@ -47,7 +47,6 @@
 <td> general </td>
 <td>
 ◇cross-env
-◇.gitignore
 ◇gzip copies<br>
 ◇static resource files in "/static" folder
 ◇css extracted to files

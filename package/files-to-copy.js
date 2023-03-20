@@ -4,7 +4,7 @@ module.exports = [
   '.browserslistrc',
   '.editorconfig',
   '.eslintrc.js',
-  '.gitignore',
+  // '.gitignore', // cannot be published, npmjs.com will always ignore it.
   '.prettierrc',
   'babel.config.js',
   'index.html',
