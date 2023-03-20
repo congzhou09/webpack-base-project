@@ -1,4 +1,4 @@
-// construct necessary package content from the outer project
+// set up necessary package content from the outer project
 
 const fs = require('fs');
 const path = require('path');
