@@ -125,6 +125,44 @@ const commands = [
     },
   },
   {
+    cmd: 'tidydeps',
+    desc: 'tidy duplicated dependencies',
+    builder: {},
+    handler: () => {
+      const outerPackagePath = path.resolve(workDirectory, './package.json');
+      const outerPackage = require(outerPackagePath);
+      const innerPackage = require('./package.json');
+      const innerDepKeys = Object.keys(innerPackage.dependencies);
+
+      const keysToRemove = [];
+      // dependencies
+      let outerKeys = Object.keys(outerPackage.dependencies ?? {});
+      outerKeys.forEach((oneDepName) => {
+        if (innerDepKeys.includes(oneDepName)) {
+          keysToRemove.push(oneDepName);
+        }
+      });
+      keysToRemove.forEach((oneDepKey) => {
+        delete outerPackage.dependencies[oneDepKey];
+      });
+
+      keysToRemove.length = 0;
+
+      // devDependencies
+      outerKeys = Object.keys(outerPackage.devDependencies ?? {});
+      outerKeys.forEach((oneDepName) => {
+        if (innerDepKeys.includes(oneDepName)) {
+          keysToRemove.push(oneDepName);
+        }
+      });
+      keysToRemove.forEach((oneDepKey) => {
+        delete outerPackage.devDependencies[oneDepKey];
+      });
+
+      fs.writeFileSync(outerPackagePath, JSON.stringify(outerPackage, null, 2) + '\n');
+    },
+  },
+  {
     cmd: 'vite',
     desc: 'run vite dev server',
     builder: {},
