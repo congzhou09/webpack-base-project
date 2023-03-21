@@ -1,5 +1,7 @@
 ## brick-cli-base
 
+[![npm version](https://badge.fury.io/js/brick-cli-base.svg)](https://badge.fury.io/js/brick-cli-base)
+
 ♂ brick-cli-XX is a serie of packages used to organize web-front projects using templates in [webpack-base-project](https://github.com/congzhou09/webpack-base-project), alonging with cli commands.
 
 ♂ purposes
