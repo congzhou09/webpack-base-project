@@ -4,7 +4,7 @@
 
 ♂ purposes
 
-1. Organize projects with less config works, which is achieved by encapsulting basic config works into an npm package.
+1. Organize projects with less config works, which is achieved by encapsulting basic config works into an npm package. Encapsulting also make projects's dependencies in "package.json" file more concise.
 
 2. Uniform basic project configs between diffenent projects using the same same framework.
 
