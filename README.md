@@ -61,6 +61,12 @@
 ◇minimized textual files
 </td>
 </tr>
+<tr>
+<td> tool </td>
+<td> 
+◇ webpack-bundle-analyzer
+</td>
+</tr>
 </table>
 
 ● There is a serie of [packages](https://github.com/congzhou09/webpack-base-project/blob/master/package/README.md) used to organize web-front projects using templates here.

@@ -1,7 +1,8 @@
-const baseWebpackConfig = require('./webpack.base.conf');
+const requireUncached = require('./util').requireUncached;
+const baseWebpackConfig = requireUncached('./webpack.base.conf');
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const baseConfig = require('./config');
+const baseConfig = requireUncached('./config');
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'development',

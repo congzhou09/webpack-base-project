@@ -1,8 +1,9 @@
+const requireUncached = require('./util').requireUncached;
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const baseConfig = require('./config');
+const baseConfig = requireUncached('./config');
 
 const workDirectory = process.cwd();
 function resolve(dir) {

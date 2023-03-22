@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const requireUncached = require('./build/util').requireUncached;
 const fs = require('node:fs');
 const fsPromise = require('node:fs/promises');
 const path = require('path');
@@ -9,9 +10,6 @@ const { hideBin } = require('yargs/helpers');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
-const devConfig = require('./build/webpack.dev.conf');
-const sitConfig = require('./build/webpack.sit.conf');
-const prodConfig = require('./build/webpack.prod.conf');
 
 const { accessSync, constants } = fs;
 const { cp: cpPromise } = fsPromise;
@@ -20,9 +18,9 @@ const workDirectory = process.cwd();
 const CUSTOM_FILENAME = 'brick.config.js';
 
 const configFinal = {
-  dev: getFinalConfig(devConfig),
-  sit: getFinalConfig(sitConfig),
-  prod: getFinalConfig(prodConfig),
+  dev: getFinalConfig('dev'),
+  sit: getFinalConfig('sit'),
+  prod: getFinalConfig('prod'),
 };
 
 function getViteConfigPath() {
@@ -36,17 +34,39 @@ function getViteConfigPath() {
   return configDefault;
 }
 
+function resolveDirPath(...args) {
+  return path.join(__dirname, ...args);
+}
+
 // generate final webpack config using custom brick config in workDirectory
-function getFinalConfig(oneConfig) {
-  let finalConfig = oneConfig;
+function getFinalConfig(env) {
+  fs.cpSync(resolveDirPath('./build/config-orig.js'), resolveDirPath('./build/config.js'));
+  const baseConfig = requireUncached(resolveDirPath('./build/config.js'));
+  let finalConfig = requireUncached(resolveDirPath(`./build/webpack.${env}.conf`));
   try {
     const customDirectory = path.join(workDirectory, CUSTOM_FILENAME);
     accessSync(customDirectory, constants.R_OK);
-    const theCustom = require(customDirectory);
-    if (typeof theCustom === 'function') {
-      finalConfig = theCustom.call(null, oneConfig);
-    } else {
-      finalConfig = merge(oneConfig, theCustom);
+    const brickCustom = requireUncached(customDirectory);
+    try {
+      if (Array.isArray(brickCustom)) {
+        const finalBaseConfig = brickCustom[0].call(null, baseConfig);
+        fs.writeFileSync(resolveDirPath('./build/config.js'), 'module.exports=' + JSON.stringify(finalBaseConfig, null, 2) + '\n');
+        const tmpConfig = requireUncached(resolveDirPath(`./build/webpack.${env}.conf`));
+        finalConfig = brickCustom[1].call(null, tmpConfig);
+      } else if (typeof brickCustom === 'function') {
+        finalConfig = brickCustom.call(null, finalConfig);
+      } else if (typeof brickCustom === 'object') {
+        if (brickCustom.hasOwnProperty('brickBase')) {
+          const finalBaseConfig = Object.assign(baseConfig, brickCustom['brickBase']);
+          fs.writeFileSync(resolveDirPath('./build/config.js'), 'module.exports=' + JSON.stringify(finalBaseConfig, null, 2) + '\n');
+          const tmpConfig = requireUncached(resolveDirPath(`./build/webpack.${env}.conf`));
+          delete brickCustom['brickBase'];
+          finalConfig = merge(tmpConfig, brickCustom);
+        }
+        finalConfig = merge(finalConfig, brickCustom);
+      }
+    } catch (err) {
+      console.error(`error occurs while parsing brick.config.js: `, err);
     }
   } catch (err) {}
 

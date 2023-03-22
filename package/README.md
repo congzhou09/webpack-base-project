@@ -27,11 +27,18 @@
 
 ♀ (selectable) Run "brick tidydeps" to remove duplicated dependencies that has been included by brick-cli-XX from the project's "package.json" file. Then run "yarn install" to let yarn re-tidy the relationships between packages.
 
-♀ Custom webpack configurations can be set in "brick.config.js" file under the project's root directory. Content of the file can be in one of two forms below.
+♀ Custom webpack configurations can be set in "brick.config.js" file under the project's root directory. Content of the file can be in one of three forms below.
 
 ```
-// configurations will be merged by "webpack-merge"
+/*
+* 1.Configurations will be merged by "webpack-merge".
+* 2.The "brickBase" field corresponds to configurations in "build/config.js" file of "webpack-base-project".
+*/
+
 module.exports = {
+  brickBase:{
+    urlPrefix: 'http://my.prefix'
+  },
   devServer:{
     port: 2023
   }
@@ -39,11 +46,27 @@ module.exports = {
 ```
 
 ```
-// configurations returned by the function will be treated as the final webpack config
-module.exports = (curConfigs)=>{
-  curConfigs.devServer.port = 2023;
-  return curConfigs;
+/*
+* Configurations returned by the function will be treated as the final webpack config.
+*/
+module.exports = (curConfig)=>{
+  curConfig.devServer.port = 2023;
+  return curConfig;
 }
+```
+
+```
+/*
+* 1.Configurations returned by the first function corresponds to configurations in "build/config.js" file of "webpack-base-project".
+* 2.Configurations returned by the second function will be treated as the final webpack config.
+*/
+module.exports = [(baseConfig)=>{
+  baseConfig.urlPrefix = 'http://my.prefix';
+  return baseConfig;
+}, (curConfig)=>{
+  curConfig.devServer.port = 2023;
+  return curConfig;
+}];
 ```
 
 ♀ Other configurations for ESLint, TypeScript, Vite, etc can be set in related config files.
