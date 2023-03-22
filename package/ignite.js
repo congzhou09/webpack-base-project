@@ -28,6 +28,11 @@ Promise.all(
   console.error(`error occurs when copying files`, err);
 });
 
+// create config-orig.js
+cpPromise(resolvePath('../build/config.js'), resolvePath('./build/config-orig.js')).catch((err) => {
+  console.error(`error occurs when copying files`, err);
+});
+
 const innateDependencies = {
   'bash-color': '^0.0.4',
   'detect-port': '^1.5.1',

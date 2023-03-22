@@ -1,11 +1,12 @@
-const baseWebpackConfig = require('./webpack.base.conf');
+const requireUncached = require('./util').requireUncached;
+const baseWebpackConfig = requireUncached('./webpack.base.conf');
 const { merge } = require('webpack-merge');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const analysisBundle = false;
+const baseConfig = requireUncached('./config');
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
@@ -36,7 +37,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 });
 
 // 是否进行chunk分析
-if (analysisBundle) {
+if (baseConfig.analysisBundle) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
   webpackConfig.plugins.push(new BundleAnalyzerPlugin());
 }
