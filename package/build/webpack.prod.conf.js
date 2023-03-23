@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const baseConfig = requireUncached('./config');
 
-const webpackConfig = merge(baseWebpackConfig, {
+let webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   devtool: false,
   output: {
@@ -40,6 +40,18 @@ const webpackConfig = merge(baseWebpackConfig, {
 if (baseConfig.analysisBundle) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
   webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+}
+
+// 是否进行speed分析
+if (baseConfig.speedMeasure) {
+  const SpeedMeasure = require('speed-measure-webpack-plugin');
+  const speedMeasure = new SpeedMeasure();
+
+  const miniCssPluginIndex = webpackConfig.plugins.findIndex((one) => one.constructor.name === 'MiniCssExtractPlugin');
+  const miniCssPlugin = webpackConfig.plugins[miniCssPluginIndex];
+
+  webpackConfig = speedMeasure.wrap(webpackConfig);
+  webpackConfig.plugins[miniCssPluginIndex] = miniCssPlugin;
 }
 
 module.exports = webpackConfig;
