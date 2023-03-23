@@ -2,6 +2,7 @@ const requireUncached = require('./util').requireUncached;
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = requireUncached('./config');
 
@@ -10,7 +11,7 @@ function resolve(dir) {
   return path.join(workDirectory, dir);
 }
 
-module.exports = {
+const webpackConfig = {
   context: resolve('.'),
   entry: {
     app: resolve('./src/index.js'),
@@ -19,6 +20,9 @@ module.exports = {
     publicPath: baseConfig.urlPrefix,
     path: resolve('dist'),
     filename: 'js/[name]-[contenthash].js',
+  },
+  cache: {
+    type: 'filesystem',
   },
   optimization: {
     runtimeChunk: 'single', // 将webpack的runtime单独提取到一个chunk，且被多个入口共用
@@ -51,7 +55,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: [resolve('src')],
-        use: 'babel-loader?cacheDirectory=true',
+        use: ['thread-loader', 'babel-loader'],
       },
       {
         test: /\.(ts|tsx)?$/,
@@ -198,5 +202,8 @@ module.exports = {
         },
       ],
     }),
+    new ProgressBarPlugin(),
   ],
 };
+
+module.exports = webpackConfig;
