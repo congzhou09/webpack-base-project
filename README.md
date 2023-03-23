@@ -41,6 +41,7 @@
 ◇Less<br>
 ◇Sass<br>
 ◇PostCSS<br>
+◇thread-loader<br>
 </td>
 </tr>
 <tr>
@@ -54,17 +55,19 @@
 <tr>
 <td> general </td>
 <td>
-◇cross-env
+◇cross-env<br>
 ◇gzip copies<br>
-◇static resource files in "/static" folder
-◇css extracted to files
-◇minimized textual files
+◇static resource files in "/static" folder<br>
+◇css extracted to files<br>
+◇minimized textual files<br>
 </td>
 </tr>
 <tr>
 <td> tool </td>
 <td> 
-◇ webpack-bundle-analyzer
+◇webpack-bundle-analyzer<br>
+◇progress-bar-webpack-plugin<br>
+◇speed-measure-webpack-plugin<br>
 </td>
 </tr>
 </table>

@@ -1,7 +1,6 @@
 const requireUncached = require('./util').requireUncached;
 const baseWebpackConfig = requireUncached('./webpack.base.conf');
 const { merge } = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseConfig = requireUncached('./config');
 
 const webpackConfig = merge(baseWebpackConfig, {
@@ -32,11 +31,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     //     }
     // }
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/[name]-[contenthash].css',
-    }),
-  ],
 });
 
 module.exports = webpackConfig;
