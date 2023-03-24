@@ -11,3 +11,5 @@ const oneFish: FishType = {
 };
 
 oneFish.swim();
+
+export default oneFish;
