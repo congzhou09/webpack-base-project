@@ -68,6 +68,7 @@
 ◇webpack-bundle-analyzer<br>
 ◇progress-bar-webpack-plugin<br>
 ◇speed-measure-webpack-plugin<br>
+◇jest <br>
 </td>
 </tr>
 </table>
