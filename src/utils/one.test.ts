@@ -2,8 +2,8 @@ import oneFish from './one';
 
 describe('check swim method', () => {
   it('console', () => {
-    console.log = jest.fn();
+    const logSpy = jest.spyOn(console, 'log');
     oneFish.swim();
-    expect(console.log).toHaveBeenCalledWith('I swim');
+    expect(logSpy).toHaveBeenCalledWith('I swim');
   });
 });
