@@ -11,4 +11,5 @@ module.exports = [
   'template.html',
   'tsconfig.json',
   'vite.config.js',
+  'jest.config.ts',
 ];

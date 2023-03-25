@@ -160,30 +160,28 @@ const webpackConfig = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              outputPath: 'image',
-              name: '[name]-[contenthash].[ext]',
-            },
+        test: /\.(png|jpe?g|gif|svg)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8192,
           },
-        ],
+        },
+        generator: {
+          filename: 'image/[name]-[contenthash].[ext]',
+        },
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              outputPath: 'font',
-              name: '[name]-[contenthash].[ext]',
-            },
+        test: /\.(woff2?|eot|ttf|otf)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8192,
           },
-        ],
+        },
+        generator: {
+          filename: 'image/[name]-[contenthash].[ext]',
+        },
       },
     ],
   },

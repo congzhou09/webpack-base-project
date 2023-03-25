@@ -41,4 +41,15 @@ const innateDependencies = {
 
 innerPackage.dependencies = Object.assign(outerPackage.dependencies, outerPackage.devDependencies, innateDependencies);
 
+/* devDependencies will not be installed using "yarn install" in workDirectory */
+// innerPackage.devDependencies = {};
+// function pickDevDependencies() {
+//   const devDependencyNames = ['webpack-dev-server', 'jest'];
+//   devDependencyNames.forEach((one) => {
+//     innerPackage.devDependencies[one] = innerPackage.dependencies[one];
+//     delete innerPackage.dependencies[one];
+//   });
+// }
+// pickDevDependencies();
+
 fs.writeFileSync(resolvePath('./package.json'), JSON.stringify(innerPackage, null, 2) + '\n');
