@@ -6,4 +6,3 @@ yarn-error.log
 package-test/*
 !package-test/package.json
 .vscode
-coverage

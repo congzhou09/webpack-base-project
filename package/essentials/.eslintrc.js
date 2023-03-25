@@ -1,14 +1,14 @@
 module.exports = {
   root: true,
-  extends: ['google', 'plugin:vue/essential', 'plugin:prettier/recommended'],
+  extends: ['google', 'plugin:prettier/recommended'],
   env: {
     browser: true,
     commonjs: true,
     es6: true,
     node: true,
   },
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    parser: '@babel/eslint-parser',
     sourceType: 'module',
   },
   rules: {
