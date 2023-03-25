@@ -30,7 +30,7 @@ const webpackConfig = {
       cacheGroups: {
         vendor: {
           // 单独提取到vendor中的库
-          test: /[\\/]node_modules[\\/](jquery)[\\/]/,
+          test: /[\\/]node_modules[\\/](vue|vue-router)[\\/]/,
           name: 'vendor',
           chunks: 'all',
           priority: 2, // 某个module同时符合多个Group的条件的时候移入priority值更大的chunk中
@@ -45,13 +45,28 @@ const webpackConfig = {
     },
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css', '.ts', '.tsx'],
+    extensions: ['.js', '.json', '.vue', '.css'],
     alias: {
+      vue$: 'vue/dist/vue.esm.js',
       '@utils': resolve('src/utils'),
     },
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              loaders: {
+                scss: ['vue-style-loader', 'css-loader', 'sass-loader'],
+                less: ['vue-style-loader', 'css-loader', 'less-loader'],
+              },
+            },
+          },
+        ],
+      },
       {
         test: /\.js$/,
         include: [resolve('src')],

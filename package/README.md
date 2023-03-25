@@ -1,8 +1,8 @@
-## brick-cli-base
+## brick-cli-vue
 
-[![npm version](https://badge.fury.io/js/brick-cli-base.svg)](https://badge.fury.io/js/brick-cli-base)
+[![npm version](https://badge.fury.io/js/brick-cli-vue.svg)](https://badge.fury.io/js/brick-cli-vue)
 
-♂ brick-cli-XX is a serie of packages used to organize web-front projects using templates in [webpack-base-project](https://github.com/congzhou09/webpack-base-project), alonging with cli commands.
+♂ brick-cli-XX is a serie of packages used to organize web-front projects using templates in [webpack-vue-project](https://github.com/congzhou09/webpack-vue-project), alonging with cli commands.
 
 ♂ purposes
 
@@ -16,7 +16,7 @@
 
 |  package name   |  framework   |
 | :-------------: | :----------: |
-| brick-cli-base  | no framework |
+| brick-cli-vue  | no framework |
 | brick-cli-react |    react     |
 
 ## usage
@@ -32,7 +32,7 @@
 ```
 /*
 * 1.Configurations will be merged by "webpack-merge".
-* 2.The "brickBase" field corresponds to configurations in "build/config.js" file of "webpack-base-project".
+* 2.The "brickBase" field corresponds to configurations in "build/config.js" file of "webpack-vue-project".
 */
 
 module.exports = {
@@ -57,7 +57,7 @@ module.exports = (curConfig)=>{
 
 ```
 /*
-* 1.Configurations returned by the first function corresponds to configurations in "build/config.js" file of "webpack-base-project".
+* 1.Configurations returned by the first function corresponds to configurations in "build/config.js" file of "webpack-vue-project".
 * 2.Configurations returned by the second function will be treated as the final webpack config.
 */
 module.exports = [(baseConfig)=>{
