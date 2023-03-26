@@ -1,10 +1,11 @@
 const requireUncached = require('./util').requireUncached;
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const baseConfig = requireUncached('./config');
 
 const workDirectory = process.cwd();
@@ -48,7 +49,7 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.json', '.vue', '.css'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm-bundler.js',
       '@utils': resolve('src/utils'),
     },
   },
@@ -59,12 +60,6 @@ const webpackConfig = {
         use: [
           {
             loader: 'vue-loader',
-            options: {
-              loaders: {
-                scss: ['vue-style-loader', 'css-loader', 'sass-loader'],
-                less: ['vue-style-loader', 'css-loader', 'less-loader'],
-              },
-            },
           },
         ],
       },
@@ -202,6 +197,10 @@ const webpackConfig = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',

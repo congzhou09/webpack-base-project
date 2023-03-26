@@ -1,5 +1,5 @@
 <template>
-  <h1>Hello</h1>
+  <h1 class="title">Hello</h1>
 </template>
 
 <script>
@@ -8,8 +8,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.app {
+<style lang="scss" scoped>
+.title {
   color: red;
 }
 </style>
