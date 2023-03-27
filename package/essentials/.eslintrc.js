@@ -7,6 +7,7 @@ module.exports = {
     es6: true,
     node: true,
   },
+  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@babel/eslint-parser',
     sourceType: 'module',
@@ -18,7 +19,10 @@ module.exports = {
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
-      parser: '@typescript-eslint/parser',
+      parser: 'vue-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+      },
       extends: ['plugin:@typescript-eslint/recommended'],
       plugins: ['@typescript-eslint'],
       rules: {
