@@ -9,7 +9,7 @@
     "dev:vite": "vite",
     "sit": "webpack --config build/webpack.sit.conf.js",
     "build": "webpack --config build/webpack.prod.conf.js",
-    "codecheck": "eslint --ext .jsx,.js,.vue --fix src && prettier --write src/**/*.{css,scss,less} --loglevel warn"
+    "codecheck": "eslint --ext .jsx,.js,.vue,.ts,.tsx --fix src && prettier --write src/**/*.{css,scss,less} --loglevel warn"
   },
   "repository": {
     "type": "git",
