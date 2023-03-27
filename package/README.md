@@ -18,6 +18,7 @@
 | :-------------: | :----------: |
 | brick-cli-base  | no framework |
 | brick-cli-react |    react     |
+|  brick-cli-vue  |     vue      |
 
 ## usage
 
