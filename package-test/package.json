@@ -10,10 +10,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "brick-cli-vue": "../package"
-  },
   "devDependencies": {
-    "brick-cli-base": "../package"
+    "brick-cli-vue": "../package"
   }
 }
