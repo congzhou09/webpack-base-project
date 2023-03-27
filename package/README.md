@@ -14,11 +14,11 @@
 
 ♂ Related framework for each package is as follows.
 
-|  package name   |  framework   |
-| :-------------: | :----------: |
-| brick-cli-base  | no framework |
-| brick-cli-react |    react     |
-|  brick-cli-vue  |     vue      |
+|                           package name                           |  framework   |
+| :--------------------------------------------------------------: | :----------: |
+|  [brick-cli-base](https://www.npmjs.com/package/brick-cli-base)  | no framework |
+| [brick-cli-react](https://www.npmjs.com/package/brick-cli-react) |    react     |
+|   [brick-cli-vue](https://www.npmjs.com/package/brick-cli-vue)   |     vue      |
 
 ## usage
 
