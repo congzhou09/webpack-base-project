@@ -16,7 +16,7 @@
 
 |  package name   |  framework   |
 | :-------------: | :----------: |
-| brick-cli-vue  | no framework |
+| brick-cli-base  | no framework |
 | brick-cli-react |    react     |
 |  brick-cli-vue  |     vue      |
 
