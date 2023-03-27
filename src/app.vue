@@ -1,5 +1,8 @@
 <template>
-  <h1 class="title">Hello</h1>
+  <div>
+    <h1>Hello</h1>
+    <p class="paragraph">this is one paragraph</p>
+  </div>
 </template>
 
 <script>
@@ -9,7 +12,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  color: red;
+.paragraph {
+  color: lightseagreen;
 }
 </style>

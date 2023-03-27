@@ -47,7 +47,7 @@ const webpackConfig = {
     },
   },
   resolve: {
-    extensions: ['.js', '.json', '.vue', '.css'],
+    extensions: ['.js', '.json', '.vue', '.css', '.ts'],
     alias: {
       vue$: 'vue/dist/vue.esm-bundler.js',
       '@utils': resolve('src/utils'),
