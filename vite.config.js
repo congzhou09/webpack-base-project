@@ -1,5 +1,7 @@
 const path = require('path');
 import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import checker from 'vite-plugin-checker';
 
 export default defineConfig((command, mode, ssrBuild) => {
@@ -17,6 +19,8 @@ export default defineConfig((command, mode, ssrBuild) => {
       port: 2018,
     },
     plugins: [
+      vue(),
+      vueJsx(),
       checker({
         typescript: true,
       }),

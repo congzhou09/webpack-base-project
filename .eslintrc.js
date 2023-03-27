@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['google', 'plugin:vue/essential', 'plugin:prettier/recommended'],
+  extends: ['google', 'plugin:vue/vue3-essential', 'plugin:prettier/recommended'],
   env: {
     browser: true,
     commonjs: true,
