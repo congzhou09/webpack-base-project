@@ -7,7 +7,7 @@
 | branch |  framework   |
 | :----: | :----------: |
 | master | no framework |
-|  vue   |     vue2     |
+|  vue   |     vue      |
 | react  |    react     |
 
 ● Features supported is listed in the table below. <b>Feel free to access "/build" directory and relating config files for more detail.</b>
@@ -68,6 +68,7 @@
 ◇webpack-bundle-analyzer<br>
 ◇progress-bar-webpack-plugin<br>
 ◇speed-measure-webpack-plugin<br>
+◇jest <br>
 </td>
 </tr>
 </table>
