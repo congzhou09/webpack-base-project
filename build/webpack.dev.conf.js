@@ -33,4 +33,13 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
 });
 
+if (process.env.ENV !== 'development') {
+  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+  webpackConfig.plugins.push(
+    new MiniCssExtractPlugin({
+      filename: 'css/[name]-[contenthash].css',
+    }),
+  );
+}
+
 module.exports = webpackConfig;
