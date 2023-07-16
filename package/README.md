@@ -24,9 +24,9 @@
 
 ♀ Install specific brick-cli-XX package.
 
-♀ Run "brick init" for the first time. This will create config files for tools like ".eslintrc.js", "babel.config.js", ".prettierrc" and so on with default configurations. If one config file has existed, it will not be overwritten, and a message like "xxx has existed, ignore creation." will be displayed in the command window.
+♀ Run "npx brick init" for the first time. This will create config files for tools like ".eslintrc.js", "babel.config.js", ".prettierrc" and so on with default configurations. If one config file has existed, it will not be overwritten, and a message like "xxx has existed, ignore creation." will be displayed in the command window.
 
-♀ (selectable) Run "brick tidydeps" to remove duplicated dependencies that has been included by brick-cli-XX from the project's "package.json" file. Then run "yarn install" to let yarn re-tidy the relationships between packages.
+♀ (selectable) Run "npx brick tidydeps" to remove duplicated dependencies that has been included by brick-cli-XX from the project's "package.json" file. Then run "yarn install" to let yarn re-tidy the relationships between packages.
 
 ♀ Custom webpack configurations can be set in "brick.config.js" file under the project's root directory. Content of the file can be in one of three forms below.
 
