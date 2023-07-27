@@ -101,3 +101,5 @@ Write final webpack configs to command window(--eject) or to file(--eject=<span 
 <td>build for prod</td>
 </tr>
 </table>
+
+♀ PS: Commands starting with 'brick' above may require a 'npx' prefix.
