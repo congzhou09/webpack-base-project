@@ -1,4 +1,4 @@
-import oneFish from './one';
+import oneFish from '@/utils/one';
 
 describe('check swim method', () => {
   it('console', () => {
