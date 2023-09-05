@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "brick-cli-vue": "../package"
+    "brick-cli-vue": "file:../package"
   }
 }
