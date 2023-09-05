@@ -84,7 +84,9 @@ function ejectConfig(filename, theConfig) {
 
 function whetherEject(ejectValue, env) {
   if (ejectValue) {
+    console.log('ejecting configs...');
     ejectConfig(ejectValue, configFinal[env]);
+    console.log('done!');
     return true;
   }
   return false;
@@ -125,6 +127,7 @@ const commands = [
     desc: 'create necessary files for devServer and build',
     builder: {},
     handler: () => {
+      console.log('initing...');
       const filesToCopy = require('./files-to-copy');
       filesToCopy.forEach((one) => {
         const sourceDirectory = path.join(__dirname, `./essentials/${one}`);
@@ -142,6 +145,7 @@ const commands = [
             });
         }
       });
+      console.log('done!');
     },
   },
   {
@@ -149,6 +153,7 @@ const commands = [
     desc: 'tidy duplicated dependencies',
     builder: {},
     handler: () => {
+      console.log('tidying duplicated dependencies...');
       const outerPackagePath = path.resolve(workDirectory, './package.json');
       const outerPackage = require(outerPackagePath);
       const innerPackage = require('./package.json');
@@ -180,6 +185,7 @@ const commands = [
       });
 
       fs.writeFileSync(outerPackagePath, JSON.stringify(outerPackage, null, 2) + '\n');
+      console.log('done!');
     },
   },
   {
@@ -187,6 +193,7 @@ const commands = [
     desc: 'run vite dev server',
     builder: {},
     handler: async (argv) => {
+      console.log('running vite dev server...');
       const configPath = getViteConfigPath();
       const vite = require('vite');
       const { createServer } = vite;
@@ -204,6 +211,7 @@ const commands = [
     builder: {},
     handler: (argv) => {
       if (!whetherEject(argv.eject, 'dev')) {
+        console.log('running webpack dev server...');
         const theConfig = configFinal['dev'];
         const compiler = webpack(theConfig);
 
@@ -232,6 +240,7 @@ const commands = [
     builder: {},
     handler: (argv) => {
       if (!whetherEject(argv.eject, 'sit')) {
+        console.log('building for sit...');
         runBuild('sit');
       }
     },
@@ -242,6 +251,7 @@ const commands = [
     builder: {},
     handler: (argv) => {
       if (!whetherEject(argv.eject, 'prod')) {
+        console.log('building for prod...');
         runBuild('prod');
       }
     },
@@ -259,4 +269,4 @@ yargsObj.option({
     describe: 'eject the config to console <or filename>',
   },
 });
-yargsObj.parse();
+yargsObj.strict().usage('brick [Command] [Option]').demandCommand().scriptName('brick').default('version').parse();
