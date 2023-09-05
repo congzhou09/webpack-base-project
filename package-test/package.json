@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@brick-cli/react": "../package"
+    "@brick-cli/react": "file:../package"
   }
 }
