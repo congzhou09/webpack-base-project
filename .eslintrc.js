@@ -15,6 +15,8 @@ module.exports = {
   rules: {
     'require-jsdoc': 'off',
     'comma-dangle': 'off',
+    'react/react-in-jsx-scope': 'off', // react must be in scope when using jsx
+    'react/jsx-uses-react': 'off', // react must be in scope when using jsx
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
     'react-hooks/exhaustive-deps': 'off',
