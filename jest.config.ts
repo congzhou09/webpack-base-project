@@ -13,7 +13,7 @@ const config: Config.InitialOptions = {
     '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.jsx?$': 'babel-jest',
   },
-  moduleFileExtensions: ['js', 'json', 'ts'],
+  moduleFileExtensions: ['js', 'json', 'ts', 'tsx'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: `<rootDir>./` }),
 };
 
