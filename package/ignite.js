@@ -40,6 +40,7 @@ const innateDependencies = {
 };
 
 innerPackage.dependencies = Object.assign(outerPackage.dependencies, outerPackage.devDependencies, innateDependencies);
+innerPackage['lint-staged'] = outerPackage['lint-staged'];
 
 /* devDependencies will not be installed using "yarn install" in workDirectory */
 // innerPackage.devDependencies = {};
