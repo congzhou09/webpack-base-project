@@ -19,7 +19,6 @@ module.exports = {
     'react/jsx-uses-react': 'off', // react must be in scope when using jsx
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
-    'react-hooks/exhaustive-deps': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
     'no-unused-vars': 'off',

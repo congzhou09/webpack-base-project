@@ -3,7 +3,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import PropTypes from 'prop-types';
 import '@utils/one';
-import { Counter } from './demo';
+import { Counter, NewsBoard } from './demo';
 
 const root = createRoot(document.querySelector('#app'));
 
@@ -12,6 +12,7 @@ const App = (props) => {
     <div>
       <p>{props.message}</p>
       <Counter />
+      <NewsBoard />
     </div>
   );
 };
