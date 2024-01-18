@@ -12,4 +12,5 @@ module.exports = [
   'tsconfig.json',
   'vite.config.js',
   'jest.config.ts',
+  'jest-mock',
 ];
