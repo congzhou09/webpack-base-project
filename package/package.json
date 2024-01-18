@@ -63,5 +63,9 @@
     "bash-color": "^0.0.4",
     "detect-port": "^1.5.1",
     "yargs": "^17.7.1"
+  },
+  "lint-staged": {
+    "./src/!(**/node_modules)/*.{ts,tsx,js,jsx,vue}": "eslint --fix",
+    "./src/!(**/node_modules)/*.{css,scss,less}": "prettier --write"
   }
 }
