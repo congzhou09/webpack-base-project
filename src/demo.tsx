@@ -75,7 +75,7 @@ export const NewsBoard = () => {
         <button data-testid="search-btn" onClick={onReload}>
           search
         </button>
-        <input value={keyword} onChange={onKeywordChange} />
+        <input data-testid="keyword-input" value={keyword} onChange={onKeywordChange} />
       </section>
       <section>
         {loading ? (
