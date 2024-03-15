@@ -51,7 +51,7 @@ module.exports = {
 * Configurations returned by the function will be treated as the final webpack config.
 */
 module.exports = (curConfig)=>{
-  curConfig.devServer.port = 2023;
+  curConfig.devServer = { ...curConfig.devServer, port: 2023 };
   return curConfig;
 }
 ```
@@ -65,7 +65,7 @@ module.exports = [(baseConfig)=>{
   baseConfig.urlPrefix = 'http://my.prefix';
   return baseConfig;
 }, (curConfig)=>{
-  curConfig.devServer.port = 2023;
+  curConfig.devServer = { ...curConfig.devServer, port: 2023 };
   return curConfig;
 }];
 ```
