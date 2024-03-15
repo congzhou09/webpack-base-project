@@ -191,7 +191,7 @@ const webpackConfig = {
           },
         },
         generator: {
-          filename: 'image/[name]-[contenthash].[ext]',
+          filename: 'font/[name]-[contenthash].[ext]',
         },
       },
     ],

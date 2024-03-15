@@ -5,10 +5,10 @@
     "resolveJsonModule": true,
     "target": "ES5",
     "module": "es2015",
-    "lib": ["dom", "es6", "es7"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "checkJs": false,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "declaration": false,
     "downlevelIteration": true,
     "strict": false,
@@ -17,6 +17,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
